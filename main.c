@@ -15,8 +15,12 @@ int main(void)
 }
 
 
-//cordinaat opgeven
+//cordinaat opgeven waar ton staat
+//cordinaat opgeven waar ton naar toe moet
 //motor x-as aansturen
-//stoppen als afstansmotor bij x-coordinaat is
+//stoppen als afstandsmeter bij eerste x-coordinaat is
 //y-as juist aantal keer draaien
+//z-as motor aan
+//z-as motor uit als drukschakelaar in ingedrukt
+//elektromagneet aan
 //
