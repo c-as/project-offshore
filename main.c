@@ -1,32 +1,13 @@
 #include <avr/io.h>
-#define AAN PF1
-#define UIT PF2
-#define X PF1
-#define Y PF2
-#define MIN PF1
-#define PLUS PF1
-#define START PF1
-#define NOODSTOP PF2
+#include "knoppen.h"
 
 int main(void)
 {
-    DDRF &= ~(1 << AAN);
-    DDRF &= ~(1 << UIT);
-    DDRF &= ~(1 << X);
-    DDRF &= ~(1 << Y);
-    DDRF &= ~(1 << X);
-    DDRF &= ~(1 << Y);
-    DDRF &= ~(1 << MIN);
-    DDRF &= ~(1 << PLUS);
-    DDRF &= ~(1 << START);
-    DDRF &= ~(1 << NOODSTOP);
-
-
-    // Insert code
+    init_knoppen();
 
     while(1)
     {
-        if(!(PINF & (1 << AAN)))
+        if(AAN_KNOP_INGEDRUKT)
         {
 
         }
