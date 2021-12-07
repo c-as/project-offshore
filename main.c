@@ -1,9 +1,14 @@
 #include <avr/io.h>
+#include <avr/io.h>s
+#include <avr/interrupt.h>
+#include <util/delay.h>
 #include "knoppen.h"
+#include "motors.h"
 
 int main(void)
 {
     init_knoppen();
+    init_motors();
 
     while(1)
     {
