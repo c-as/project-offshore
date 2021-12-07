@@ -10,12 +10,13 @@ int main(void)
     init_knoppen();
     init_motors();
 
+    int snelheid = 100;
+
     while(1)
     {
-        if(AAN_KNOP_INGEDRUKT)
-        {
-
-        }
+        zet_motor(snelheid);
+        _delay_ms(2000);
+        snelheid -= 10;
     }
 
     return 0;
