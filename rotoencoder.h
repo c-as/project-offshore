@@ -1,39 +1,27 @@
-int rotoencoder_graden = 0;
+#define CLK_HOOG PINH & (1<<4)
+#define DT_HOOG PINH & (1<<3)
 
-bool rotoencoder_a = false;
-bool rotoencoder_b = false;
-bool rotoencoder_allebei = false;
+int rotoencoder_clock = 0;
+
+bool prev_CLK;
 
 void init_rotoencoder(){
     //zet input
     DDRH &= ~((1 << PH4) | (1 << PH3));
+
+    prev_CLK = CLK_HOOG;
 }
 
 void check_rotoencoder(){
-    //a
-    if(PINH & (1<<PH4) && PINH & (1<<PH3) && !rotoencoder_allebei){
-       rotoencoder_allebei = true;
-        if(rotoencoder_a){
-            rotoencoder_graden += 18;
-        } else if (rotoencoder_b){
-            rotoencoder_graden -= 18;
+    bool current_CLK = CLK_HOOG;
+
+    if(current_CLK != prev_CLK){
+        if(current_CLK != DT_HOOG){
+            rotoencoder_clock++;
+        } else {
+            rotoencoder_clock--;
         }
     }
 
-    if(!(PINH & (1<<PH4) && PINH & (1<<PH3)) && rotoencoder_allebei){
-       rotoencoder_allebei = false;
-    }
-
-    //b
-    if(PINH & (1<<PH4) && !rotoencoder_a){
-        rotoencoder_a = true;
-    } else {
-        rotoencoder_a = false;
-    }
-
-    if(PINH & (1<<PH3) && !rotoencoder_b){
-        rotoencoder_b = true;
-    } else {
-        rotoencoder_b = false;
-    }
+    prev_CLK = current_CLK;
 }
