@@ -10,6 +10,7 @@ int main(void)
 {
     init_knoppen();
     init_motors();
+    init_rotoencoder();
 
     while(1)
     {
