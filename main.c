@@ -1,22 +1,26 @@
 #include <avr/io.h>
-#include <avr/io.h>s
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include <stdbool.h>
 #include "knoppen.h"
 #include "motors.h"
+#include "rotoencoder.h"
 
 int main(void)
 {
     init_knoppen();
     init_motors();
 
-    int snelheid = 100;
-
     while(1)
     {
-        zet_motor(snelheid);
-        _delay_ms(2000);
-        snelheid -= 10;
+        check_rotoencoder();
+        if(rotoencoder_graden > 0){
+            zet_motor(40);
+        } else if (rotoencoder_graden < 0){
+            zet_motor(-40);
+        } else {
+            zet_motor(0);
+        }
     }
 
     return 0;
