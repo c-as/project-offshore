@@ -14,9 +14,10 @@ void init_rotoencoder(){
 
 void check_rotoencoder(){
     bool current_CLK = CLK_HOOG;
+    bool current_DT = DT_HOOG;
 
     if(current_CLK != prev_CLK){
-        if(current_CLK != DT_HOOG){
+        if(current_CLK != current_DT){
             rotoencoder_clock++;
         } else {
             rotoencoder_clock--;
