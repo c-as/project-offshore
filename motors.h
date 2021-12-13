@@ -39,6 +39,7 @@ ISR(TIMER0_COMPB_vect)
 }
 
 void init_motors(){
+    cli();
     //output
 	DDRH |= (1<<PH6);
 	DDRF |= (1<<PF5);
