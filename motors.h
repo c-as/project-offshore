@@ -1,5 +1,8 @@
 //motor code
 
+//RPWM PH6 Digital9
+//LPWM PF5 Analog5
+
 ISR(TIMER0_OVF_vect)
 {
 	if (OCR0A == 0 && OCR0B == 0)
