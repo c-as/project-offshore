@@ -1,3 +1,6 @@
+//pin CLK PH4 Digital7
+//pin DT PH3 Digital 6
+
 #define CLK_HOOG PINH & (1<<4)
 #define DT_HOOG PINH & (1<<3)
 
