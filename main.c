@@ -15,9 +15,9 @@ int main(void)
     while(1)
     {
         check_rotoencoder();
-        if(rotoencoder_graden > 0){
+        if(rotoencoder_clock > 0){
             zet_motor(40);
-        } else if (rotoencoder_graden < 0){
+        } else if (rotoencoder_clock < 0){
             zet_motor(-40);
         } else {
             zet_motor(0);
