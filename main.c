@@ -5,12 +5,14 @@
 #include "knoppen.h"
 #include "motors.h"
 #include "rotoencoder.h"
+#include "echosensor.h"
 
 int main(void)
 {
     init_knoppen();
     init_motors();
     init_rotoencoder();
+    init_echosensor();
 
     while(1)
     {
