@@ -34,7 +34,7 @@ void init_display_shield(bool gebruik_clock){
         //timer 2 8 bit
         //mode 0
         TCCR2A = 0;
-        //div 0
+        //div
         TCCR2B = (1<<CS22) | (0<<CS21) | (0<<CS20);
         //enable overflow interrupt
         TIMSK2 = (1<<TOIE0);
