@@ -6,6 +6,7 @@
 #include "motors.h"
 #include "rotoencoder.h"
 #include "echosensor.h"
+#include "display_shield.h"
 
 int main(void)
 {
