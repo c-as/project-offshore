@@ -23,21 +23,23 @@ static unsigned int segmentcodes[] = {
 	~0x9C, ~0x7A, ~0x9E, ~0x8E
 };
 
-void init_display_shield(){
+void init_display_shield(bool gebruik_clock){
     DDRH |= (1 << 5) | (1 << 4);
     DDRG |= (1 << 5);
 
     SHIFT_LAAG;
     LATCH_LAAG;
 
-    //timer 2 8 bit
-    //mode 0
-	TCCR2A = 0;
-	//div 0
-	TCCR2B = (1<<CS22) | (0<<CS21) | (0<<CS20);
-    //enable overflow interrupt
-	TIMSK2 = (1<<TOIE0);
-	sei();
+    if(gebruik_clock){
+        //timer 2 8 bit
+        //mode 0
+        TCCR2A = 0;
+        //div 0
+        TCCR2B = (1<<CS22) | (0<<CS21) | (0<<CS20);
+        //enable overflow interrupt
+        TIMSK2 = (1<<TOIE0);
+        sei();
+    }
 }
 
 void send_data(char data)
