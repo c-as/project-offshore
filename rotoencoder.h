@@ -1,8 +1,8 @@
-//pin CLK PH4 Digital7
-//pin DT PH3 Digital 6
+//pin CLK PA0 Digital22
+//pin DT PA1 Digital23
 
-#define CLK_HOOG PINH & (1<<4)
-#define DT_HOOG PINH & (1<<3)
+#define CLK_HOOG PINA & (1<<0)
+#define DT_HOOG PINA & (1<<1)
 
 int rotoencoder_clock = 0;
 
@@ -10,7 +10,7 @@ bool prev_CLK;
 
 void init_rotoencoder(){
     //zet input
-    DDRH &= ~((1 << PH4) | (1 << PH3));
+    DDRA &= ~((1 << 0) | (1 << 1));
 
     prev_CLK = CLK_HOOG;
 }
