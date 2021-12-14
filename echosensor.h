@@ -1,9 +1,9 @@
-//pin trig PE3 Digital5
-//pin echo PG5 Digital4
+//pin trig PA2 Digital24
+//pin echo PA3 Digital25
 
-#define TRIG_HOOG PORTE |= (1 << 3)
-#define TRIG_LAAG PORTE &= ~(1 << 3)
-#define ECHO_HOOG PING & (1 << 5)
+#define TRIG_HOOG PORTA |= (1 << 2)
+#define TRIG_LAAG PORTA &= ~(1 << 2)
+#define ECHO_HOOG PINA & (1 << 3)
 
 int echosensor_ticks = 0;
 int echosensor_mm = 0;
