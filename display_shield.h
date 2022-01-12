@@ -15,7 +15,7 @@ ISR(TIMER2_OVF_vect){
     shield_display_getal(buffer_getal);
 }
 
-static unsigned int segmentcodes[] = {
+static unsigned int segmentcodes_shield[] = {
 	~0xFC, ~0x60, ~0xDA, ~0xF2,
 	~0x66, ~0xB6, ~0xBE, ~0xE0,
 	~0xFE, ~0xF6, ~0xEE, ~0x3E,
@@ -81,7 +81,7 @@ void shield_display_getal(unsigned int getal)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		shield_display(segmentcodes[getal%10], i);
+		shield_display(segmentcodes_shield[getal%10], i);
 		getal /= 10;
 	}
 }
