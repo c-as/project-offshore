@@ -12,7 +12,7 @@
 int buffer_getal = 0;
 
 ISR(TIMER2_OVF_vect){
-    display_getal(buffer_getal);
+    shield_display_getal(buffer_getal);
 }
 
 static unsigned int segmentcodes[] = {
@@ -68,7 +68,7 @@ void send_enable(int display_nummer)
 	send_data(0x10 << display_nummer);
 }
 
-void display(char data, int display_nummer)
+void shield_display(char data, int display_nummer)
 {
 	send_data(data);
 	send_enable(display_nummer);
@@ -77,15 +77,16 @@ void display(char data, int display_nummer)
 	LATCH_LAAG;
 }
 
-void display_getal(unsigned int getal)
+void shield_display_getal(unsigned int getal)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		display(segmentcodes[getal%10], i);
+		shield_display(segmentcodes[getal%10], i);
 		getal /= 10;
 	}
 }
 
-void zet_getal(unsigned int getal){
+void shield_zet_getal(unsigned int getal)
+{
     buffer_getal = getal;
 }
