@@ -12,7 +12,6 @@
 int buffer_getal = 0;
 
 ISR(TIMER2_OVF_vect){
-    //zet_getal(333);
     display_getal(buffer_getal);
 }
 
