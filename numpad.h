@@ -7,35 +7,47 @@
 //6 Digital 32 PC5
 //7 Digital 33 PC4
 
+int numpad_codes[4][4] = {
+    {1,2,3,11},
+    {4,5,6,12},
+    {7,8,9,13},
+    {15,0,16,14}
+
+};
+
 int numpad_laatste_rij = 0;
 int numpad_laatste_kolom = 0;
 
 void init_numpad(){
-    DDRA |= (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
-    DDRC &= ~((1 << 7) | (1 << 6) | (1 << 5) | (1 << 4));
+    //PORTA |= (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
 }
 
 void check_numpad(){
-//    PORTA |= (1 << (4));
-//
-//    if(PINC & (1 << 7)){
-//        numpad_laatste_ingedrukt_x = 1;
-//    } else {
-//        numpad_laatste_ingedrukt_x = 0;
-//    }
-//    return;
+    DDRA |= (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
+    DDRC &= ~((1 << 7) | (1 << 6) | (1 << 5) | (1 << 4));
+    PORTA &= ~((1 << 4) | (1 << 5) | (1 << 6) | (1 << 7));
+    PORTC |= (1 << 7) | (1 << 6) | (1 << 5) | (1 << 4);
 
     for(int rij = 0; rij < 4; rij++){
-        PORTA |= (1 << (4 + rij));
-
-        for(int kolom = 0; kolom < 4; kolom++){
-            if(PINC & (1 << (7 - kolom))){
-                numpad_laatste_rij = rij;
-                numpad_laatste_kolom = kolom;
-                return;
-            }
+        if(!(PINC & (1 << 7 - rij))){
+            numpad_laatste_rij = rij;
+            break;
         }
-
-        PORTA &= ~(1 << (4 + rij));
     }
+
+    DDRA &= ~((1 << 4) | (1 << 5) | (1 << 6) | (1 << 7));
+    DDRC |= (1 << 7) | (1 << 6) | (1 << 5) | (1 << 4);
+    PORTA |= (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
+    PORTC &= ~((1 << 7) | (1 << 6) | (1 << 5) | (1 << 4));
+
+    for(int kolom = 0; kolom < 4; kolom++){
+        if(!(PINA & (1 << 4 + kolom))){
+            numpad_laatste_kolom = kolom;
+            break;
+        }
+    }
+}
+
+int numpad_keycode(){
+    return numpad_codes[numpad_laatste_rij][numpad_laatste_kolom];
 }
