@@ -11,7 +11,7 @@ bool echo_last = false;
 bool echo = false;
 bool send = false;
 
-ISR(INT0_vect){
+void interrupt_echosensor(){
     bool echo_current = ECHO_HOOG;
     if(echo_current != echo_last){
         if(echo_current && !echo){
