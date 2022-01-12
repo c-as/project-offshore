@@ -106,7 +106,7 @@ void init_motors(){
 
 void zet_motor(int percentage, int motor)
 {
-    active_motor = motor;
+    actieve_motor = motor;
 
 	if (percentage >= -100 && percentage <= 100)
 	{
