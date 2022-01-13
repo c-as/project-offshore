@@ -56,13 +56,15 @@
 		<Unit filename="fuse.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="knoppen.h" />
+		<Unit filename="leds.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="motors.h" />
 		<Unit filename="numpad.h" />
 		<Unit filename="rotoencoder.h" />
+		<Unit filename="schakelaars.h" />
+		<Unit filename="segment_display.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
