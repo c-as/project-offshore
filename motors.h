@@ -1,15 +1,17 @@
 //motor code
 
-//RPWM PH6 Digital9 //motor 0
+//RPWM PH6 Digital9 //motor 0 motor z-as
 //LPWM PF5 Analog5
 
-//IN1 Digital39 PG2 //motor 1
+//IN1 Digital39 PG2 //motor 1 motor y-as
 //IN2 Digital40 PG1
 
-//IN3 Digital41 PG0 //motor 2
+//IN3 Digital41 PG0 //motor 2 motor x-as
 //IN4 Digital42 PL7
 
 int actieve_motor = 0;
+
+enum {MOTOR_Z, MOTOR_Y, MOTOR_X};
 
 ISR(TIMER0_OVF_vect)
 {
