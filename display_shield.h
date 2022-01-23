@@ -9,7 +9,7 @@
 #define LATCH_HOOG PORTG |= (1 << 5)
 #define LATCH_LAAG PORTG &= ~(1 << 5)
 
-int buffer_getal = 0;
+volatile int buffer_getal = 0;
 
 ISR(TIMER2_OVF_vect){
     shield_display_getal(buffer_getal);
