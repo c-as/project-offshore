@@ -1,6 +1,7 @@
+
 //beweeg naar positie
 
-void beweeg_naar_posi()
+void beweeg_naar_positie()
 {
     zet_motor(100, MOTOR_X);
 
