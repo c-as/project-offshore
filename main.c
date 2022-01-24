@@ -12,17 +12,7 @@
 #include "numpad.h"
 #include "leds.h"
 #include "reset.h"
-
-ISR(INT0_vect){
-    while(NOODSTOP_INGEDRUKT)
-    {
-        LED_NOODSTOP_AAN;
-        //zet_motor(0, MOTOR_X);
-        //zet_motor(0, MOTOR_Y);
-        //zet_motor(0, MOTOR_Z);
-    }
-    LED_NOODSTOP_UIT;
-}
+#include "interrupt.h"
 
 int main(void)
 {
@@ -34,6 +24,7 @@ int main(void)
     init_numpad();
     init_leds();
     reset();
+    init_interrupt();
 
 
     while(1)
