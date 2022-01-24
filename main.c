@@ -6,7 +6,7 @@
 #include "schakelaars.h"
 #include "rotoencoder.h"
 #include "omrekenen_cm_slagen.h"
-#include "beweeg_naar_posi"
+#include "beweeg_naar_positie.h"
 #include "display_shield.h"
 #include "segment_display.h"
 #include "numpad.h"
