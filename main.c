@@ -12,6 +12,7 @@
 #include "numpad.h"
 #include "leds.h"
 #include "reset.h"
+#include "noodstop.h"
 #include "interrupt.h"
 
 int main(void)
