@@ -4,7 +4,7 @@
 //Z-as end switch boven Digital35 PC2
 //Z-as end switch onder Digital34 PC3
 
-#define NOODSTOP_INGEDRUKT (!(PINL & (1 << 6)))
+#define NOODSTOP_INGEDRUKT (PINL & (1 << 6))
 #define Y_AS_END_SWITCH_INGEDRUKT (!(PINC & (1 << 0)))
 #define X_AS_END_SWITCH_INGEDRUKT (!(PINC & (1 << 1)))
 #define Z_AS_END_SWITCH_BOVEN_INGEDRUKT (!(PINC & (1 << 2)))
