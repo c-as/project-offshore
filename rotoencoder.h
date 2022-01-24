@@ -8,11 +8,11 @@
 #define CLK_HOOG_Y PINA & (1 << 2)
 #define DT_HOOG_Y PINA & (1 << 3)
 
-int rotoencoder_clock_x = 0;
-int rotoencoder_clock_y = 0;
+volatile int rotoencoder_clock_x = 0;
+volatile int rotoencoder_clock_y = 0;
 
-bool prev_CLK_X;
-bool prev_CLK_Y;
+volatile bool prev_CLK_X;
+volatile bool prev_CLK_Y;
 
 void init_rotoencoder(){
     //zet input
