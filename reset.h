@@ -6,7 +6,18 @@ void reset()
 {
     LED_BEZIG_AAN;
 
-    zet_motor(100, MOTOR_X);
+    zet_motor(100, MOTOR_Z);
+
+    while(1)
+    {
+        if(Z_AS_END_SWITCH_BOVEN_INGEDRUKT)
+        {
+            zet_motor(0, MOTOR_Z);
+
+            zet_motor(100, MOTOR_X);
+            break;
+        }
+    }
 
     while(1)
     {
@@ -27,18 +38,7 @@ void reset()
         {
             zet_motor(0, MOTOR_Y);
 
-            zet_motor(100, MOTOR_Z);
-
             rotoencoder_clock_y = 0;
-            break;
-        }
-    }
-
-    while(1)
-    {
-        if(Z_AS_END_SWITCH_BOVEN_INGEDRUKT)
-        {
-            zet_motor(0, MOTOR_Z);
             break;
         }
     }
