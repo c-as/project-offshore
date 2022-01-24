@@ -2,34 +2,46 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include <stdbool.h>
-#include "knoppen.h"
 #include "motors.h"
+#include "schakelaars.h"
 #include "rotoencoder.h"
-#include "echosensor.h"
+#include "omrekenen_cm_slagen.h"
+#include "beweeg_naar_posi"
 #include "display_shield.h"
+#include "segment_display.h"
 #include "numpad.h"
+#include "leds.h"
+#include "reset.h"
 
 ISR(INT0_vect){
-    //interrupt_echosensor();
+    while(NOODSTOP_INGEDRUKT)
+    {
+        LED_NOODSTOP_AAN;
+        //zet_motor(0, MOTOR_X);
+        //zet_motor(0, MOTOR_Y);
+        //zet_motor(0, MOTOR_Z);
+    }
+    LED_NOODSTOP_UIT;
 }
 
 int main(void)
 {
-    init_knoppen();
     init_motors();
+    init_schakelaars();
     init_rotoencoder();
-    init_echosensor();
+    init_display_shield(false);
+    init_segment_display();
+    init_numpad();
+    init_leds();
+    reset();
+
 
     while(1)
     {
-        check_rotoencoder();
-        if(rotoencoder_clock > 0){
-            zet_motor(40);
-        } else if (rotoencoder_clock < 0){
-            zet_motor(-40);
-        } else {
-            zet_motor(0);
-        }
+        //verplaats_ton();
+        //init_beweeg_naar_posi();
+        //omrekening();
+
     }
 
     return 0;

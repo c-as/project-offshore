@@ -8,7 +8,7 @@
 #define Y_AS_END_SWITCH_INGEDRUKT (!(PINC & (1 << 0)))
 #define X_AS_END_SWITCH_INGEDRUKT (!(PINC & (1 << 1)))
 #define Z_AS_END_SWITCH_BOVEN_INGEDRUKT (!(PINC & (1 << 2)))
-#define Z_AS_END_SWITCH_BOVEN_INGEDRUKT (!(PINC & (1 << 3)))
+#define Z_AS_END_SWITCH_ONDER_INGEDRUKT (!(PINC & (1 << 3)))
 
 void init_schakelaars(){
     //zet input
