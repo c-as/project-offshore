@@ -23,6 +23,6 @@ void beweeg_naar_positie()
             zet_motor(100, MOTOR_Y);
             break;
         }
-    )
+    }
 }
 
