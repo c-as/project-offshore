@@ -57,6 +57,7 @@
 		<Unit filename="fuse.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="input.h" />
 		<Unit filename="interrupt.h" />
 		<Unit filename="leds.h" />
 		<Unit filename="main.c">
@@ -70,6 +71,7 @@
 		<Unit filename="rotoencoder.h" />
 		<Unit filename="schakelaars.h" />
 		<Unit filename="segment_display.h" />
+		<Unit filename="verplaats_ton.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
