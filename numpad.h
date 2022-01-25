@@ -7,6 +7,11 @@
 //6 Digital 32 PC5
 //7 Digital 33 PC4
 
+struct key_positie {
+    int rij;
+    int kolom;
+};
+
 int numpad_codes[4][4] = {
     {1,2,3,11},
     {4,5,6,12},
@@ -15,14 +20,21 @@ int numpad_codes[4][4] = {
 
 };
 
-int numpad_laatste_rij = 0;
-int numpad_laatste_kolom = 0;
+//groter dan 0 dan input
+int numpad_rij = 0;
+int numpad_kolom = 0;
 
 void init_numpad(){
     //PORTA |= (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
 }
 
-void check_numpad(){
+int numpad_keycode(struct key_positie positie){
+    return numpad_codes[positie.rij][positie.kolom];
+}
+
+struct key_positie check_numpad(){
+    struct key_positie positie = {-1, -1};
+
     DDRA |= (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
     DDRC &= ~((1 << 7) | (1 << 6) | (1 << 5) | (1 << 4));
     PORTA &= ~((1 << 4) | (1 << 5) | (1 << 6) | (1 << 7));
@@ -30,7 +42,7 @@ void check_numpad(){
 
     for(int rij = 0; rij < 4; rij++){
         if(!(PINC & (1 << 7 - rij))){
-            numpad_laatste_rij = rij;
+            positie.rij = rij;
             break;
         }
     }
@@ -42,12 +54,24 @@ void check_numpad(){
 
     for(int kolom = 0; kolom < 4; kolom++){
         if(!(PINA & (1 << 4 + kolom))){
-            numpad_laatste_kolom = kolom;
+            positie.kolom = kolom;
             break;
         }
     }
 }
 
-int numpad_keycode(){
-    return numpad_codes[numpad_laatste_rij][numpad_laatste_kolom];
+int krijg_input(){
+    struct key_positie positie  = check_numpad();
+    static struct key_positie laatste = {-1, -1};
+
+    if(positie.rij > -1 && positie.kolom > -1){
+        if(positie.rij != laatste.rij || positie.kolom != laatste.rij){
+            _delay_ms(1);
+            return numpad_keycode(positie);
+        }
+    }
+
+    laatste = positie;
+
+    return -1;
 }
