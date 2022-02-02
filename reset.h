@@ -4,7 +4,7 @@
 
 void reset()
 {
-    zet_motor(100, MOTOR_Z);
+    zet_motor(MOTOR_Z, false);
 
     LED_AAN_AAN;
 
@@ -18,23 +18,9 @@ void reset()
 
     LED_MAGNEET_AAN;
 
-    zet_motor(100, MOTOR_X);
+    alle_motors_uit();
 
-    zet_motor(100, MOTOR_X);
-
-    while(1)
-    {
-        if(X_AS_END_SWITCH_INGEDRUKT)
-        {
-            break;
-        }
-    }
-
-    LED_BEZIG_AAN;
-
-    zet_motor(0, MOTOR_X);
-
-    zet_motor(100, MOTOR_Y);
+    zet_motor(MOTOR_Y, false);
 
     rotoencoder_clock_x = 0;
 
@@ -47,12 +33,27 @@ void reset()
         }
     }
 
+    alle_motors_uit();
+
+    LED_INPUT_Y_AAN;
+
+    zet_motor(MOTOR_X, false);
+
+    while(1)
+    {
+        if(X_AS_END_SWITCH_INGEDRUKT)
+        {
+            break;
+        }
+    }
+
+    LED_INPUT_X_AAN;
+
+    alle_motors_uit();
+
     LED_GEREED_AAN;
 
-    zet_motor(0, MOTOR_Y);
-
     rotoencoder_clock_y = 0;
-
 
     return;
 }

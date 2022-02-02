@@ -9,9 +9,10 @@
 //IN3 Digital41 PG0 //motor 2 motor x-as
 //IN4 Digital42 PL7
 
-int actieve_motor = 0;
 
-enum {MOTOR_Z, MOTOR_Y, MOTOR_X};
+volatile int actieve_motor = -1;
+
+//enum {MOTOR_Z, MOTOR_Y, MOTOR_X};
 
 ISR(TIMER0_OVF_vect)
 {
@@ -24,37 +25,36 @@ ISR(TIMER0_OVF_vect)
 	}
 	else if (OCR0A != 0)
 	{
-        switch(actieve_motor){
-        case 0:
+        if(actieve_motor == 0){
             PORTH |= (1 << 6);
             PORTF &= ~(1 << 5);
-            break;
-        case 1:
+
+        }
+        if(actieve_motor == 1){
             PORTG |= (1 << 2);
             PORTG &= ~(1 << 1);
-            break;
-        case 2:
+        }
+        if(actieve_motor == 2){
             PORTG |= (1 << 0);
             PORTL &= ~(1 << 7);
-            break;
-	    }
+        }
+
 
 	}
 	else if (OCR0B != 0)
 	{
-	    switch(actieve_motor){
-        case 0:
-            PORTH &= ~(1 << 6);
-            PORTF |= (1 << 5);
-            break;
-        case 1:
-            PORTG &= ~(1 << 2);
+        if(actieve_motor == 0){
+            PORTH &= (1 << 6);
+            PORTF |= ~(1 << 5);
+
+        }
+        if(actieve_motor  == 1){
+            PORTG &= (1 << 2);
             PORTG |= ~(1 << 1);
-            break;
-        case 2:
-            PORTG &= ~(1 << 0);
-            PORTL |= (1 << 7);
-            break;
+        }
+        if(actieve_motor == 2){
+            PORTG &= (1 << 0);
+            PORTL |= ~(1 << 7);
 	    }
 	}
 }
@@ -112,6 +112,7 @@ void zet_motor(int percentage, int motor)
 
 	if (percentage >= -100 && percentage <= 100)
 	{
+
 		if (percentage >= 0)
 		{
 			OCR0B = 0;
@@ -123,6 +124,9 @@ void zet_motor(int percentage, int motor)
 			OCR0B = (255*percentage)/-100;
 			//OCR0z = 0;
 		}
+
+
 	}
+
 }
 

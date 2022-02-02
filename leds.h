@@ -33,3 +33,23 @@ void init_leds(){
     DDRG |= (1 << 5);
     DDRH |= ((1 << 3) | (1 << 4) | (1 << 5));
 }
+
+void alle_leds_aan(){
+    LED_GEREED_AAN;
+    LED_AAN_AAN;
+    LED_BEZIG_AAN;
+    LED_INPUT_X_AAN;
+    LED_INPUT_Y_AAN;
+    LED_MAGNEET_AAN;
+    LED_NOODSTOP_AAN;
+}
+
+void alle_leds_uit(){
+    LED_AAN_UIT;
+    LED_NOODSTOP_UIT;
+    LED_INPUT_X_UIT;
+    LED_INPUT_Y_UIT;
+    LED_GEREED_UIT;
+    LED_BEZIG_UIT;
+    LED_MAGNEET_UIT;
+}
